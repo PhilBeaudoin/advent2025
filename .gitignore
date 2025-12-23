@@ -1,0 +1,15 @@
+node_modules
+npm-debug.log
+yarn-error.log
+dist
+.idea
+test.sqlite
+.DS_Store
+*.log
+tsconfig.build.tsbuildinfo
+.*.env
+.env
+\#*\#
+*~
+*.swp
+tsconfig.temp.json
