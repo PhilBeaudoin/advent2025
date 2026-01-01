@@ -1,61 +1,55 @@
-const COLORS = ['red', 'blue', 'green']
-
-type Color = (typeof COLORS)[number]
-
-type Round = { [color in Color]: number }
-
-interface Game {
-  id: number
-  rounds: Round[]
+function numDigits(n: number) {
+  return Math.floor(Math.log10(n)) + 1
 }
 
-function parseRound(round: string): Round {
-  const result = { red: 0, blue: 0, green: 0 }
-  for (const color of COLORS) {
-    const re = new RegExp(`(\\d+) ${color}`, 'g')
-    result[color] = parseInt([...round.matchAll(re)]?.[0]?.[1] ?? '0', 10)
-  }
-  return result
+function isWeird1(n: number) {
+  const nd = numDigits(n)
+  if (nd % 2 === 1) return false
+  const half = nd / 2
+  const firstHalf = Math.floor(n / 10 ** half)
+  const secondHalf = n % 10 ** half
+  if (firstHalf === secondHalf) return true
 }
 
-const gameRE = /^Game (\d+): (.*)$/g
-function parseGame(line: string): Game {
-  const match = [...line.matchAll(gameRE)][0]
-  return {
-    id: parseInt(match[1], 10),
-    rounds: match[2].split(';').map(parseRound),
-  }
-}
-
-async function part1(lines: string[]) {
-  const max = { red: 12, green: 13, blue: 14 }
-  let sum = 0
-  for (const line of lines) {
-    const game = parseGame(line)
-    let possible = true
-    for (const round of game.rounds) {
-      for (const color of COLORS)
-        if (round[color] > max[color]) possible = false
+function isWeird2(n: number) {
+  const nd = numDigits(n)
+  for (let size = 1; size <= nd / 2; size++) {
+    if (nd % size !== 0) continue
+    const base = 10 ** size
+    let val = n
+    const seen = val % base
+    while (val > 0) {
+      if (seen !== val % base) break
+      val = Math.floor(val / base)
     }
-    if (possible) sum += game.id
+    if (val === 0) return true
   }
-  return sum
+  return false
 }
 
-async function part2(lines: string[]) {
-  let sum = 0
-  for (const line of lines) {
-    const game = parseGame(line)
-    const min = { red: 0, green: 0, blue: 0 }
-    for (const round of game.rounds) {
-      for (const color of COLORS)
-        if (round[color] > min[color]) min[color] = round[color]
-    }
-    let product = 1
-    for (const color of COLORS) product *= min[color]
-    sum += product
-  }
-  return sum
+function checkRange(from: number, to: number, part: number) {
+  const isWeird = part === 1 ? isWeird1 : isWeird2
+  let total = 0
+  for (let i = from; i <= to; i++) if (isWeird(i)) total += i
+  return total
 }
+
+function parse(line: string) {
+  const ranges = line.split(',')
+  return ranges.map((x) => {
+    const [from, to] = x.split('-').map((y) => parseInt(y, 10))
+    return [from, to]
+  })
+}
+
+async function run(lines: string[], part: number) {
+  const ranges = parse(lines[0])
+  let total = 0
+  for (const [from, to] of ranges) total += checkRange(from, to, part)
+  return total
+}
+
+const part1 = async (lines: string[]) => run(lines, 1)
+const part2 = async (lines: string[]) => run(lines, 2)
 
 export default [part1, part2]

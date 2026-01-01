@@ -1,61 +1,69 @@
-interface Card {
-  id: number
-  winning: number[]
-  numbers: number[]
+interface Grid {
+  width: number
+  height: number
+  cells: string[][]
 }
 
-function parseNumbers(line: string): number[] {
-  return line
-    .trim()
-    .split(/\s+/)
-    .map((v) => parseInt(v, 10))
-    .sort((a, b) => a - b)
+function parseGrid(lines: string[]): Grid {
+  const height = lines.length
+  const width = lines[0].length
+  const cells = lines.map((line) => line.split(''))
+  return { width, height, cells }
 }
 
-const gameRE = /^Card\s+(\d+):\s*(.*)\s*\|\s*(.*)\s*$/g
-function parseCard(line: string): Card {
-  const match = [...line.matchAll(gameRE)][0]
-  return {
-    id: parseInt(match[1], 10),
-    winning: parseNumbers(match[2]),
-    numbers: parseNumbers(match[3]),
+function isRoll(grid: Grid, x: number, y: number): boolean {
+  if (x < 0 || x >= grid.width || y < 0 || y >= grid.height) return false
+  const v = grid.cells[y][x]
+  return v === '@' || v === '#'
+}
+
+function countAdjacentRolls(grid: Grid, x: number, y: number): number {
+  let count = 0
+  for (let dy = -1; dy <= 1; dy++) {
+    for (let dx = -1; dx <= 1; dx++) {
+      if (dx === 0 && dy === 0) continue
+      if (isRoll(grid, x + dx, y + dy)) count++
+    }
   }
-}
-
-function countMatches(card: Card): number {
-  let i = 0
-  let j = 0
-  let matches = 0
-  while (i < card.winning.length && j < card.numbers.length) {
-    if (card.winning[i] === card.numbers[j]) {
-      matches++
-      i++
-      j++
-    } else if (card.winning[i] <= card.numbers[j]) i++
-    else j++
-  }
-  return matches
+  return count
 }
 
 async function part1(lines: string[]) {
-  let sum = 0
-  for (const line of lines) {
-    const card = parseCard(line)
-    const matches = countMatches(card)
-    sum += matches === 0 ? 0 : Math.pow(2, matches - 1)
+  const grid = parseGrid(lines)
+  let accessibleRolls = 0
+  for (let y = 0; y < grid.height; y++) {
+    for (let x = 0; x < grid.width; x++) {
+      if (isRoll(grid, x, y)) {
+        if (countAdjacentRolls(grid, x, y) < 4) accessibleRolls++
+      }
+    }
   }
-  return sum
+  return accessibleRolls
 }
 
 async function part2(lines: string[]) {
-  const copiesPerCard = new Array(lines.length).fill(1)
-  lines.forEach((line, i) => {
-    const card = parseCard(line)
-    const matches = countMatches(card)
-    const copies = copiesPerCard[i]
-    for (let j = 0; j < matches; j++) copiesPerCard[i + j + 1] += copies
-  })
-  return copiesPerCard.reduce((acc, copies) => acc + copies, 0)
+  const grid = parseGrid(lines)
+  let removed = 0
+  let prevRemoved = -1
+  while (removed !== prevRemoved) {
+    for (let y = 0; y < grid.height; y++) {
+      for (let x = 0; x < grid.width; x++) {
+        if (isRoll(grid, x, y))
+          if (countAdjacentRolls(grid, x, y) < 4) grid.cells[y][x] = '#'
+      }
+    }
+    // Remove all marked rolls
+    prevRemoved = removed
+    for (let y = 0; y < grid.height; y++) {
+      for (let x = 0; x < grid.width; x++) {
+        if (grid.cells[y][x] === '#') {
+          grid.cells[y][x] = '.'
+          removed++
+        }
+      }
+    }
+  }
+  return removed
 }
 
 export default [part1, part2]

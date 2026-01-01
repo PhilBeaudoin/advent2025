@@ -1,13 +1,14 @@
 import minimist from 'minimist'
 import fs from 'fs-extra'
 import { findLargestDay } from './files'
+import { FileType } from './types'
 
-type Func = (lines: string[]) => Promise<any>
+type Func = (lines: string[], file?: FileType) => Promise<any>
 
 const argv = minimist(process.argv.slice(2))
 const day = parseInt(argv._[0], 10)
 const part = argv['1'] ? 1 : argv['2'] ? 2 : 0
-const file = argv.ex ? `example` : `input`
+const file: FileType = argv.ex ? `example` : `input`
 
 async function run() {
   const maxDay = await findLargestDay()
@@ -26,7 +27,7 @@ async function run() {
   const lines = input.split('\n')
   if (lines.length > 0 && lines[lines.length - 1] === '') lines.pop()
 
-  console.log(`Result: `, await parts[part - 1](lines))
+  console.log(`Result: `, await parts[part - 1](lines, file))
 }
 
 run()

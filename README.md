@@ -1,6 +1,6 @@
-# advent2023
+# advent2025
 
-My responses to the [Advent of Code 2023](https://adventofcode.com/2023)
+My responses to the [Advent of Code 2025](https://adventofcode.com/2025)
 
 ## To build
 

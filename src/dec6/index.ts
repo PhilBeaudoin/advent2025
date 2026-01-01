@@ -1,33 +1,57 @@
-function roots(duration: number, record: number) {
-  const a = -1
-  const b = duration
-  const c = -record
-  const d = Math.sqrt(b * b - 4 * a * c)
-  return [Math.floor((-b + d) / (2 * a)) + 1, Math.ceil((-b - d) / (2 * a)) - 1]
+interface Op {
+  nums: number[]
+  op: '*' | '+'
 }
 
-async function part1(lines: string[]) {
-  const durations = lines[0].split(/\s+/).map((v) => parseInt(v, 10))
-  durations.shift()
-  const records = lines[1].split(/\s+/).map((v) => parseInt(v, 10))
-  records.shift()
-  let numWays = 1
-  for (let i = 0; i < durations.length; i++) {
-    const [start, end] = roots(durations[i], records[i])
-    numWays *= end - start + 1
+function parseOps1(lines: string[]): Op[] {
+  // Pop last line, with operations
+  const lastLine = lines.pop()?.trim().split(/\s+/) as ('*' | '+')[]
+  const ops: Op[] = lastLine.map((op) => ({ nums: [], op }))
+  for (const line of lines) {
+    const parts = line
+      .trim()
+      .split(/\s+/)
+      .map((x) => parseInt(x, 10))
+    for (const [i, part] of parts.entries()) ops[i].nums.push(part)
   }
-  return numWays
+  return ops
 }
 
-async function part2(lines: string[]) {
-  const durations = lines[0].split(/\s+/)
-  durations.shift()
-  const duration = parseInt(durations.join(''), 10)
-  const records = lines[1].split(/\s+/).map((v) => parseInt(v, 10))
-  records.shift()
-  const record = parseInt(records.join(''), 10)
-  const [start, end] = roots(duration, record)
-  return end - start + 1
+function parseOps2(lines: string[]): Op[] {
+  const ops: Op[] = []
+  const length = lines.reduce((max, line) => Math.max(max, line.length), 0)
+  const nLines = lines.length
+  const opsLine = lines[nLines - 1]
+  for (let i = 0; i < length; i++) {
+    const op = i >= opsLine.length ? ' ' : lines[nLines - 1][i]
+    if (op !== ' ') ops.push({ nums: [], op: op as '*' | '+' })
+    let digit = 0
+    let val = 0
+    for (let j = nLines - 2; j >= 0; j--) {
+      const char = i >= lines[j].length ? ' ' : lines[j][i]
+      if (char === ' ') continue
+      val += parseInt(char, 10) * 10 ** digit
+      digit++
+    }
+    if (val > 0) ops[ops.length - 1].nums.push(val)
+  }
+  return ops
 }
+
+async function run(lines: string[], part: number) {
+  const ops = part === 1 ? parseOps1(lines) : parseOps2(lines)
+  let result = 0
+  for (const op of ops) {
+    const opResult =
+      op.op === '*'
+        ? op.nums.reduce((acc, n) => acc * n, 1)
+        : op.nums.reduce((acc, n) => acc + n, 0)
+    result += opResult
+  }
+  return result
+}
+
+const part1 = async (lines: string[]) => run(lines, 1)
+const part2 = async (lines: string[]) => run(lines, 2)
 
 export default [part1, part2]

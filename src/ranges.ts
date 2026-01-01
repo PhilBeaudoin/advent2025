@@ -109,3 +109,12 @@ export function rangeSubtraction(
   subtraction.push(...ranges1)
   return subtraction
 }
+
+export function inRange(n: number, range: NumRange): boolean {
+  return n >= range.min && n < range.max
+}
+
+export function inRanges(n: number, ranges: NumRange[]): boolean {
+  for (const range of ranges) if (inRange(n, range)) return true
+  return false
+}
