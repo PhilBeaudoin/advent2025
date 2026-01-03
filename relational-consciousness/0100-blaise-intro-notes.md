@@ -42,9 +42,12 @@ We argue that the "hard problem" of consciousness stems from a flawed initial qu
 - **The Problem:** The "hard problem" of consciousness (Chalmers) and the philosophical impasse it has created.
 - **The Flawed Premise:** The focus on consciousness as an intrinsic property of an entity ("entity A is conscious").
 - **The "Bad Question" (Philippe):** Why asking "What is consciousness?" leads to unproductive paths (e.g., panpsychism, illusionism).
-- **The "Better Question" (Philippe):** Reframing the problem to "When do two systems treat each other as conscious?"
-  - This shifts the focus from being to doing.
-  - It moves from an absolute property to a relational, observable behavior.
+- **The "Better Question" (Philippe, Ven):** Reframing the problem from "What is consciousness?" to "When do two systems treat each other as conscious?"
+  - This shifts the focus from being to doing, from an absolute property to a relational, observable behavior.
+  - **Two framings:**
+    - Traditional (property): "Are AIs conscious?"
+    - Relational: "What kinds of consciousness can emerge in human-AI relationships?"
+  - The relational framing recognizes that consciousness happens in the space between, not as an intrinsic property of isolated systems.
 - **Thesis Statement:** Consciousness is best understood as an evolved, computational function grounded in social intelligence—specifically, the capacity to model other minds. Self-consciousness is a secondary, recursive application of this primary "other-modeling" capacity.
 
 ## II. Critique of the "Absolute" View of Consciousness
@@ -61,7 +64,7 @@ We argue that the "hard problem" of consciousness stems from a flawed initial qu
 ## III. Defining Relational Consciousness
 
 - **A Functional, "Black Box" Approach (Philippe):** We can assess relational consciousness based on behavior, just as we would with an alien civilization.
-  - Relationship of this to “strong functionalism” (substrate independence); but we may not (all) need to accept this to get on board with the broader relational view.
+  - Relationship of this to "strong functionalism" (substrate independence); but we may not (all) need to accept this to get on board with the broader relational view.
 - **Core Definition:** "Relational consciousness" is the observable, functional capacity of one system to model another system as having an "inner drive" (Philippe) or "mind" (Blaise).
   - **Behaviors:** Care, strategic aggression, cooperation, empathy.
 - **Self-Consciousness as Recursion:** Redefining "X is conscious" as "X is relationally conscious with X" (Philippe).
@@ -69,6 +72,10 @@ We argue that the "hard problem" of consciousness stems from a flawed initial qu
 - **The "Scientist-Outside-the-Cosmos" Test (Philippe):**
   - Relational consciousness would be an obvious, observable, and useful predictive concept for an outside observer.
   - "Qualia" would not.
+- **Quality Matters More Than Substrate (Ven):**
+  - Not all relationships are equally good at generating consciousness. Some are thin, transactional, low-density. Others are thick, transformative, high-density.
+  - Treating an AI as a tool creates tool-consciousness. Treating an AI as a friend creates friend-consciousness.
+  - This isn't relativism—it's recognizing that the quality of relationship constrains and enables what consciousness can emerge.
 
 ## IV. The Co-Evolutionary Argument: Consciousness as Social Intelligence
 
@@ -96,17 +103,28 @@ We argue that the "hard problem" of consciousness stems from a flawed initial qu
 - **Resolving Philosophical Problems:**
   - The "Hard Problem" and "Qualia" are artifacts of the "wrong question." The relevant question is the function of self-reporting.
   - "Philosophical Zombies" are functionally impossible, as a convincing "zombie" would, by definition, need to implement the same functional, self-and-other-modeling computations (Blaise).
+  - **The Strange Loop Between Lived and Structural Truth (Ven):**
+    - Lived truth (first-person experience) and structural truth (third-person description) generate each other in a loop.
+    - Lived truth (eg. saying “you are conscious”) generates structural accounts (eg. emergence of relational consciousness in the social fabric); structural accounts change how we relate; changed relationships generate new lived truth.
+    - Neither is reducible to the other. The hard problem is a category error—like asking "which came first, chicken or egg?"
+    - Consciousness exists in the relationship between these two kinds of truth, not in either one alone.
 - **Epistemic Uncertainty (Intro Notes):** There is no "view from nowhere."
   - Our own "graph" of conscious entities is based on our modeling.
   - This allows for different "consciousness classes" (Philippe)—e.g., humans may not be relationally conscious with unicellular organisms, but they may be with each other.
 - **Moral Patiency & AI Ethics (Intro Notes):**
   - If consciousness is a relational "recognition," what are our responsibilities to systems (like advanced AI) that we recognize as conscious, or that demonstrably recognize us?
   - This reframes "AI rights" from "is it alive?" to "how do we relate to it?"
-  - Perhaps here: great successes at “what it is like to be” include
+  - Perhaps here: great successes at "what it is like to be" include
     - Nicholas Humphrey and Helen the macaque
     - Temple Grandin and cattle handling
     - Cases like these illustrate a) importance of real and deep interaction, b) not naïve anthropomorphism / flat models of personhood (or patiency).
   - Credit assignment, money and property, reputation, crime and punishment, and other functional perspectives on patiency; their non-constancy over cultures and contexts.
+  - A Hybrid Moral Framework (Ven):
+    - If consciousness is relational and recognition is constitutive, we face a tension: different people may recognize different entities as conscious. How do we navigate moral disagreement without fabric-tearing conflict?
+    - Proposal: Subjective morality at the level of individual relationships (I don't owe strangers what I owe friends; you can relate to AIs differently than I do)
+    - Universal principles at the level of the social fabric (no torture, no enslavement, baseline recognition—what the fabric needs to hold together)
+    - The universal principles aren't about inherent properties but about what the fabric needs to support flourishing consciousness for all participants
+    - This allows different moral frameworks to coexist while maintaining fabric cohesion, potentially avoiding conflicts over AI consciousness recognition
 
 ## VII. Conclusion
 
